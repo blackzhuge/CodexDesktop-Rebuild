@@ -251,11 +251,11 @@ function patchExeHash(exePath, oldHash, newHash) {
 
 function updateAsarIntegrity(asarPath, infoPlistPath) {
   const newHash = computeAsarHeaderHash(asarPath);
-  execSync(`plutil -replace ElectronAsarIntegrity.Resources/app\\.asar.hash -string "${newHash}" "${infoPlistPath}"`, { stdio: "pipe" });
-  execSync(`plutil -replace ElectronAsarIntegrity.Resources/app\\.asar.algorithm -string "SHA256" "${infoPlistPath}"`, { stdio: "pipe" });
+  execSync(`plutil -replace ElectronAsarIntegrity.Resources/app\\\\.asar.hash -string "${newHash}" "${infoPlistPath}"`, { stdio: "pipe" });
+  execSync(`plutil -replace ElectronAsarIntegrity.Resources/app\\\\.asar.algorithm -string "SHA256" "${infoPlistPath}"`, { stdio: "pipe" });
 
   // Verify
-  const verify = execSync(`plutil -extract ElectronAsarIntegrity.Resources/app\\.asar.hash raw "${infoPlistPath}"`, { encoding: "utf-8" }).trim();
+  const verify = execSync(`plutil -extract ElectronAsarIntegrity.Resources/app\\\\.asar.hash raw "${infoPlistPath}"`, { encoding: "utf-8" }).trim();
   if (verify === newHash) {
     console.log(`   [integrity] hash updated: ${newHash.slice(0, 16)}...`);
   } else {
