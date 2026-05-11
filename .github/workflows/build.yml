@@ -38,6 +38,7 @@ jobs:
         with:
           name: Codex-macOS-${{ matrix.arch }}
           path: out/*.dmg
+          retention-days: 1
 
   build-windows:
     if: inputs.platform == 'all' || inputs.platform == 'windows'
@@ -63,3 +64,4 @@ jobs:
         with:
           name: Codex-Windows-x64
           path: out/*.zip
+          retention-days: 1

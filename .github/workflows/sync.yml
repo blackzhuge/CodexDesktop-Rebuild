@@ -114,6 +114,7 @@ jobs:
           name: Codex-macOS-${{ matrix.arch }}
           path: out/*.dmg
           if-no-files-found: error
+          retention-days: 1
 
   build-windows:
     needs: check
@@ -157,6 +158,7 @@ jobs:
           name: Codex-Windows-x64
           path: out/*.zip
           if-no-files-found: error
+          retention-days: 1
 
   # ──────────────────────────────────────────────
   # Bump version + tag + release
